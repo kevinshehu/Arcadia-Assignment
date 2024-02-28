@@ -2,27 +2,35 @@
 public with sharing class OpportunityBatchUpdateTest {
     @isTest 
     static void testOpportunityUpdate() {
-        Account testAccount = new Account(Name = 'Test Account', Industry = 'Technology');
-        insert testAccount;
+        List<Account> testAccounts = new List<Account>();
+        for (Integer i = 0; i < 10; i++) {
+            testAccounts.add(new Account(Name = 'Test Account ' + i, Industry = 'Technology'));
+        }
+        insert testAccounts;
 
-        Opportunity testOpportunity = new Opportunity(
-            Name = 'Test Opportunity',
-            StageName = 'Open',
-            CloseDate = Date.today(),
-            AccountId = testAccount.Id
-        );
-        insert testOpportunity;
+        List<Opportunity> testOpportunities = new List<Opportunity>();
+        for (Account acc : testAccounts) {
+            testOpportunities.add(new Opportunity(
+                Name = 'Test Opportunity for ' + acc.Name,
+                StageName = 'Open',
+                CloseDate = Date.today(),
+                AccountId = acc.Id
+            ));
+        }
+        insert testOpportunities;
 
-        List<Account> accountsList = new List<Account>{testAccount};
-        OpportunityBatchUpdate batch = new OpportunityBatchUpdate(accountsList);
+        OpportunityBatchUpdate batch = new OpportunityBatchUpdate(testAccounts);
 
         Test.startTest();
         Database.executeBatch(batch);
         Test.stopTest();
 
-        testOpportunity = [SELECT CloseDate FROM Opportunity WHERE Id = :testOpportunity.Id];
+        testOpportunities = [SELECT CloseDate FROM Opportunity WHERE Id IN :testOpportunities];
 
         Date expectedCloseDate = [SELECT EndDate FROM Period WHERE Type = 'Quarter' AND StartDate = THIS_FISCAL_QUARTER LIMIT 1].EndDate;
-        System.assertEquals(expectedCloseDate, testOpportunity.CloseDate, 'The Close Date should be updated to the end of the current quarter.');
+        
+        for (Opportunity opp : testOpportunities) {
+            System.assertEquals(expectedCloseDate, opp.CloseDate, 'The Close Date should be updated to the end of the current quarter.');
+        }
     }
 }
