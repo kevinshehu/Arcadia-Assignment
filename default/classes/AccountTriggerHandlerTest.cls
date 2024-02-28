@@ -1,12 +1,18 @@
 @isTest
 public with sharing class AccountTriggerHandlerTest {
     @isTest static void testBeforeUpdate() {
-        Account testAccount = new Account(Name = 'Test Account', Industry = 'Banking');
-        insert testAccount;
+        List<Account> testAccounts = new List<Account>();
+        for (Integer i = 0; i < 10; i++) {
+            testAccounts.add(new Account(Name = 'Test Account ' + i, Industry = 'Banking'));
+        }
+        insert testAccounts;
 
-        testAccount.Industry = 'Technology';
+        for (Account acc : testAccounts) {
+            acc.Industry = 'Technology';
+        }
+
         Test.startTest();
-        update testAccount;
+        update testAccounts;
         Test.stopTest();
 
         Integer queuedJobs = [SELECT COUNT() FROM AsyncApexJob];
