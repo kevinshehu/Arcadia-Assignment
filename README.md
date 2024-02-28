@@ -30,11 +30,13 @@ I developed the Accommodation_Check validation rule on the Quote Line object:
 
 
 AC 3: Require Billing Address when creating a quote
+
 I made the Billing Address a required field.
 
 
 
 AC 4: Build a quote that includes: 10 days accommodation, Round trip airfare, Massage
+
 Record URL: https://urjanet--assign1.sandbox.lightning.force.com/lightning/r/SBQQ__Quote__c/a4ZO3000000BY1ZMAW/view
 ![image](https://github.com/kevinshehu/Arcadia-Assignment/assets/57314395/b9981d65-d57a-43d5-8c6c-8f8ad8e409b5)
 
