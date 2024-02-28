@@ -23,6 +23,7 @@ I developed three components to meet the specified requirement: QuoteLineItemTri
 AC 2: Require a minimum of two nights' accommodation
 
 I developed the Accommodation_Check validation rule on the Quote Line object:
+
 ![image](https://github.com/kevinshehu/Arcadia-Assignment/assets/57314395/b208e6aa-2bf2-4d6d-9d63-00cf5b054bff)
 
 
