@@ -14,6 +14,9 @@ The price of the daily breakfast is included in the vacation package, ensuring t
 
 
 
+If you create a new quote, press 'Edit Lines', and select 'Vacation' as the product, then all related options will be shown.
+
+
 
 AC 1/a: If Airfare is purchased, require either the purchase of the rental car service or an airport transfer.
 I developed three components to meet the specified requirement: QuoteLineItemTrigger, QuoteLineItemTriggerHandler, and QuoteLineItemTriggerHandlerTest. Within the QuoteLineItemTriggerHandler, I implemented logic in the after-insert state. This logic is designed to assess the quantity of 'Airfare' and compare it against the combined quantities of 'RentalCar' and 'AirportTransfer'. Should the quantity of 'Airfare' exceed this combined total, the following error message will be triggered:
