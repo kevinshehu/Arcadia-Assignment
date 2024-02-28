@@ -17,7 +17,8 @@ The price of the daily breakfast is included in the vacation package, ensuring t
 
 AC 1/a: If Airfare is purchased, require either the purchase of the rental car service or an airport transfer.
 I developed three components to meet the specified requirement: QuoteLineItemTrigger, QuoteLineItemTriggerHandler, and QuoteLineItemTriggerHandlerTest. Within the QuoteLineItemTriggerHandler, I implemented logic in the after-insert state. This logic is designed to assess the quantity of 'Airfare' and compare it against the combined quantities of 'RentalCar' and 'AirportTransfer'. Should the quantity of 'Airfare' exceed this combined total, the following error message will be triggered:
-![image](https://github.com/kevinshehu/Arcadia-Assignment/assets/57314395/382d5e6b-9898-44da-a3b1-05b490a5222e)
+![image](https://github.com/kevinshehu/Arcadia-Assignment/assets/57314395/f8d1faf8-e906-438c-9046-f2edf38f441f)
+
 
 
 
