@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accommodation_Check</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    SBQQ__Product__r.ProductCode = &apos;Accommodation&apos;,
+    SBQQ__Quantity__c &lt;= 1
+)</errorConditionFormula>
+    <errorDisplayField>SBQQ__Quantity__c</errorDisplayField>
+    <errorMessage>The quantity for Accommodation must be at least 2.</errorMessage>
+</ValidationRule>

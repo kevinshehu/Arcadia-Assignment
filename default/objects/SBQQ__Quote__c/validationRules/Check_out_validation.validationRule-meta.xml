@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Check_out_validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>Check_out__c &lt;= Check_in__c</errorConditionFormula>
+    <errorDisplayField>Check_out__c</errorDisplayField>
+    <errorMessage>The Check-out date must be after the Check-in date.</errorMessage>
+</ValidationRule>
