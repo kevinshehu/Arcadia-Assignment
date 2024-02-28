@@ -41,11 +41,13 @@ Record URL: https://urjanet--assign1.sandbox.lightning.force.com/lightning/r/SBQ
 
 
 AC 5/a: You need to be able to track check-in and check-out dates. At a minimum, you need the Name, check-in date, check-out date, and confirmation number.
+
 I enhanced the Quote object by adding four new fields. These include two date fields for check-in and check-out, each accompanied by their respective validation rules. Additionally, a lookup field to Contact has been introduced to accurately identify the customer. Furthermore, I've implemented an auto-number field for the confirmation number, which follows the format CN-{YYYYMMDD}-{0000}.
 
 
 
 AC 5/b: Confirmation number should be set up so that it cannot be duplicated.
+
 It won't since the field is auto-number, read-only.
 
 
