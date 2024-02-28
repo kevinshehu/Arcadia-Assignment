@@ -1,5 +1,6 @@
 @isTest
 public with sharing class OrderTriggerHandlerTest {
+
     @TestSetup
     static void setup() {
         Account testAccount = new Account(Name = 'TestAccount123');
@@ -31,35 +32,46 @@ public with sharing class OrderTriggerHandlerTest {
         );
         insert standardPricebookEntry;
 
-        Order testOrder = new Order(
-            AccountId = testAccount.Id,
-            ContractId = testContract.Id,
-            Status = 'Draft',
-            EffectiveDate = Date.today(),
-            Pricebook2Id = standardPricebook.Id
-        );
-        insert testOrder;
+        List<Order> testOrders = new List<Order>();
+        for (Integer i = 0; i < 10; i++) {
+            testOrders.add(new Order(
+                AccountId = testAccount.Id,
+                ContractId = testContract.Id,
+                Status = 'Draft',
+                EffectiveDate = Date.today(),
+                Pricebook2Id = standardPricebook.Id
+            ));
+        }
+        insert testOrders;
 
-        OrderItem testOrderItem = new OrderItem(
-            OrderId = testOrder.Id,
-            PricebookEntryId = standardPricebookEntry.Id,
-            Quantity = 1,
-            UnitPrice = standardPricebookEntry.UnitPrice
-        );
-        insert testOrderItem;
+        List<OrderItem> testOrderItems = new List<OrderItem>();
+        for (Order ord : testOrders) {
+            testOrderItems.add(new OrderItem(
+                OrderId = ord.Id,
+                PricebookEntryId = standardPricebookEntry.Id,
+                Quantity = 1,
+                UnitPrice = standardPricebookEntry.UnitPrice
+            ));
+        }
+        insert testOrderItems;
     }
 
     @isTest 
     static void testOrderStatusUpdate() {
-        Order testOrder = [SELECT Id, Status, CustomerAuthorizedDate FROM Order LIMIT 1];
+        List<Order> testOrders = [SELECT Id, Status, CustomerAuthorizedDate FROM Order];
 
-        testOrder.CustomerAuthorizedDate = Date.today();
+        for (Order ord : testOrders) {
+            ord.CustomerAuthorizedDate = Date.today();
+        }
 
         Test.startTest();
-        update testOrder;
+        update testOrders;
         Test.stopTest();
 
-        testOrder = [SELECT Status FROM Order WHERE Id = :testOrder.Id];
-        System.assertEquals('Shipped', testOrder.Status);
+        testOrders = [SELECT Status FROM Order WHERE Id IN :testOrders];
+
+        for (Order ord : testOrders) {
+            System.assertEquals('Shipped', ord.Status, 'The Order status should be updated to Shipped.');
+        }
     }
 }
