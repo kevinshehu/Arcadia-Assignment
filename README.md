@@ -73,21 +73,25 @@ In response to the requirements outlined, I created a Lightning app complete wit
 Assignment #2
 
 AC 1: Trigger Development
+
 I created OrderTrigger, OrderTriggerHandler, and OrderTriggerHandlerTest for the trigger development task. In OrderTriggerHandler, I implemented logic in the beforeUpdate method to automatically update the 'Order Status' to 'Shipped' when the 'Customer Authorized Date' is set, ensuring bulk update handling and adherence to best practices.
 
 
 
 AC 2: Batch Apex
+
 I created a Batch Apex class, OpportunityBatchUpdate, and an AccountTriggerHandler to address the requirement of updating 'Open' opportunities when an account's 'Industry' field changes to 'Technology'. The trigger, AccountTrigger, on the Account object, invokes AccountTriggerHandler which in turn calls the batch class if the conditions are met. The batch class updates the 'Close Date' of these opportunities to the end of the current quarter. I also wrote test classes, OpportunityBatchUpdateTest and AccountTriggerHandlerTest, to ensure the functionality works as expected and adheres to Salesforce best practices.
 
 
 
 AC 3: Apex Test Class
+
 As mentioned above I developed test classes for each apex class created.
 
 
 
 AC 4: Exception Handling
+
 I implemented exception handling in the trigger and Batch Apex class by creating a utility class, Util. This class contains a method logException that logs exceptions to a custom object LID__Error_Log__c. The log records the exception message, line number, and stack trace for effective debugging. Additionally, I developed a test class, UtilTest, to validate the functionality of the exception logging, ensuring that it captures and logs error details correctly in various scenarios.
 
 
