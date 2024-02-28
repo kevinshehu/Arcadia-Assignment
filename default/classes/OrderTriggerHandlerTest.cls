@@ -13,7 +13,6 @@ public with sharing class OrderTriggerHandlerTest {
         );
         insert testContract;
 
-        // Update the Contract to 'Active' status
         testContract.Status = 'Active';
         update testContract;
 
