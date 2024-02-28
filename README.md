@@ -4,6 +4,7 @@ Assignment #1
 
 
 AC 1: Please create the product and its associated options
+
 I created the products and associated all of them with the Vacation Product:
 ![image](https://github.com/kevinshehu/Arcadia-Assignment/assets/57314395/0555b545-9ad5-4e08-b86e-660816c9b394)
 ![image](https://github.com/kevinshehu/Arcadia-Assignment/assets/57314395/a2e2a5c5-3787-4438-97f3-14fb5422b3a0)
