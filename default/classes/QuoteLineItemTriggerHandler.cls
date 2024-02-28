@@ -52,7 +52,7 @@ public with sharing class QuoteLineItemTriggerHandler extends TriggerHandler {
             Decimal airportTransferQuantity = airportTransferQuantities.containsKey(quoteId) ? airportTransferQuantities.get(quoteId) : 0;
             Decimal totalAdditionalServices = rentalCarQuantity + airportTransferQuantity;
     
-            if (airfareQuantity > 0 && airfareQuantity != totalAdditionalServices) {
+            if (airfareQuantity > 0 && airfareQuantity > totalAdditionalServices) {
                 item.addError('Airfare purchase requires an additional selection of either \'Rental Car Service\' or \'Airport Transfer');
             }
         }
